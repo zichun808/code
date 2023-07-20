@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int n,m,k;//人數,爆炸頻率,次數
+    cin.tie(0);//避免超時
+    cin>>n>>m>>k;
+    vector<int> p(n);//模擬剩餘的人
+    for(int i=0;i<n;i++)//編號
+        p[i]=i+1;
+    
+    int loc=0;//炸彈位置
+    for(int i=0;i<k;i++){//淘汰k人
+    //炸彈往後傳m-1次，避免超出陣列
+        loc=(loc+m-1)%p.size();
+    //淘汰拿著炸彈的人
+        p.erase(p.begin()+loc);
+    }
+    loc%=p.size();//避免超出陣列
+    cout<<p[loc]<<endl;
+    return 0;
+}
