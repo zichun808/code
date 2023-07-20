@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int find(vector<int>&friends){
+    int group=0;//群體數
+    int n=friends.size();
+    
+    vector<bool> visit(n,false);
+    for(int i=0;i<n;i++){
+        if(!visit[i]){//確認並未被找過
+            int now=i;//目前號碼
+            while(!visit[now]){
+                visit[now]=true;
+                now=friends[now];
+            }
+            group++;
+        }
+    }
+    return group;
+}
+
+int main(){
+    int n;//人數
+    cin>>n;
+
+    vector<int> friends(n);
+    for(int i=0;i<n;i++)
+        cin>>friends[i];
+
+    int group=find(friends);
+    cout<<group<<"個群體"<<endl;
+    return 0;
+}
